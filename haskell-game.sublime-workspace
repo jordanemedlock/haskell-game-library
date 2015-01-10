@@ -1,0 +1,413 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ver",
+				"vertexWithNormal"
+			],
+			[
+				"x",
+				"xyz"
+			],
+			[
+				"cub",
+				"cubeFrame"
+			],
+			[
+				"cu",
+				"cubeCoords"
+			],
+			[
+				"pos",
+				"posY"
+			],
+			[
+				"po",
+				"posX"
+			],
+			[
+				"re",
+				"realSize"
+			],
+			[
+				"_w",
+				"_windowSize"
+			],
+			[
+				"_",
+				"_windowSize"
+			],
+			[
+				"inde",
+				"indexes_"
+			],
+			[
+				"mu",
+				"multipleChoiceDivision"
+			],
+			[
+				"mul",
+				"multiplicationTableProblem"
+			],
+			[
+				"pr",
+				"print"
+			],
+			[
+				"cor",
+				"correctAnswer"
+			],
+			[
+				"an",
+				"answers"
+			],
+			[
+				"ind",
+				"indexes_"
+			],
+			[
+				"pro",
+				"prompt"
+			],
+			[
+				"end",
+				"endTime-startTime"
+			],
+			[
+				"in",
+				"indexes_"
+			],
+			[
+				"try",
+				"try	Try/Except/Else"
+			],
+			[
+				"start",
+				"startTime"
+			],
+			[
+				"time",
+				"timesTableProblem"
+			],
+			[
+				"hir",
+				"hiro_y"
+			],
+			[
+				"h",
+				"home_x"
+			],
+			[
+				"hom",
+				"home_y"
+			],
+			[
+				"pi",
+				"picked_up"
+			],
+			[
+				"tu",
+				"turnRight"
+			],
+			[
+				"hiro",
+				"hiro_x"
+			],
+			[
+				"turn",
+				"turnLeft"
+			],
+			[
+				"pick",
+				"pickupHiro"
+			],
+			[
+				"b",
+				"baymax"
+			],
+			[
+				"hi",
+				"hiro_y"
+			],
+			[
+				"d",
+				"DIRECTIONS"
+			],
+			[
+				"dist",
+				"dist2"
+			],
+			[
+				"le",
+				"left_track"
+			],
+			[
+				"left_",
+				"left_track"
+			],
+			[
+				"right",
+				"right_freq"
+			],
+			[
+				"c",
+				"Christmas"
+			],
+			[
+				"file",
+				"fileName"
+			],
+			[
+				"i",
+				"ifmain	if __name__ == '__main__'"
+			],
+			[
+				"imp",
+				"import"
+			],
+			[
+				"get",
+				"getArgs"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"haskell",
+				"SublimeHaskell: Browse module"
+			],
+			[
+				"has",
+				"Set Syntax: Haskell"
+			],
+			[
+				"swi",
+				"Set Syntax: Swift"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 174.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/jem/School/15/haskell_game"
+	],
+	"file_history":
+	[
+		"/Users/jem/School/15/haskell_game/haskell-game.cabal",
+		"/Users/jem/School/15/haskell_game/Bindings.hs",
+		"/Users/jem/School/15/haskell_game/Points.hs",
+		"/Users/jem/School/15/haskell_game/Cube.hs",
+		"/Users/jem/School/15/haskell_game/Main.hs",
+		"/Users/jem/School/15/haskell_game/Display.hs",
+		"/Users/jem/School/15/haskell_game/Camera.hs",
+		"/Users/jem/School/15/haskell_game/LICENSE",
+		"/Users/jem/School/15/GMFR/GMFRBackend/GMFRBackendTests/GMFRBackendTests.swift",
+		"/Users/jem/School/15/GMFR/MyPlayground.playground/timeline.xctimeline",
+		"/Users/jem/School/15/GMFR/MyPlayground.playground/contents.xcplayground",
+		"/Users/jem/School/15/mikey/multiplicationTables.py",
+		"/Users/jem/School/14/robotics/baymax.py",
+		"/Users/jem/School/14/robotics/utilities.py",
+		"/Users/jem/School/14/robotics/robotics.sublime-project",
+		"/Users/jem/School/14/christmas/utilities.py",
+		"/Users/jem/Library/Application Support/Sublime Text 3/Packages/User/SideBarEnhancements/Open With/Side Bar.sublime-menu",
+		"/Users/jem/School/14/christmas/christmas.sublime-project",
+		"/Users/jem/School/14/christmas/christmas.py",
+		"/Users/jem/School/14/christmas/line.py",
+		"/Users/jem/School/14/christmas/OutputSongs/Born_To_Die_6.wav",
+		"/Users/jem/School/14/christmas/OutputSongs/Sail_5.wav",
+		"/Users/jem/School/14/christmas/chrismas.py",
+		"/Users/jem/School/14/christmas/Christmas.hs",
+		"/Users/jem/School/14/christmas/FFT.hs",
+		"/Users/jem/Downloads/codehelp/PokemonEnum.java",
+		"/Users/jem/School/14/java/Hangman.java",
+		"/Users/jem/School/14/java/HangmanTester.java",
+		"/Users/jem/School/14/java/hangman.java",
+		"/Users/jem/.bashrc",
+		"/Users/jem/standing3.obj",
+		"/Users/jem/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Volumes/BigTera/jem/jem2/.bashrc"
+	],
+	"find":
+	{
+		"height": 31.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"x",
+			"Vector3",
+			"Vertex3",
+			"Vector3",
+			"Vertex3",
+			"int",
+			"w",
+			"_windowSize",
+			"input",
+			"}\n",
+			"10",
+			"5",
+			"close",
+			"utilties",
+			"_pickedup",
+			"self.x",
+			"self.y",
+			"dir",
+			"track",
+			"left",
+			"water ",
+			"Water ",
+			"water ",
+			"water"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 31.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 417.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.haskell_error_checker":
+	{
+		"height": 361.0
+	},
+	"output.haskell_sublime_load":
+	{
+		"height": 142.0
+	},
+	"project": "haskell-game.sublime-project",
+	"replace":
+	{
+		"height": 58.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
