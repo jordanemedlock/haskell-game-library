@@ -1,3 +1,11 @@
+{-|
+Module      : Cube
+Description : Creates GLUT cubes
+Copyright   : (c) Jordan Medlock, 2015
+Maintainer  : jordanemedlock@gmail.com
+Stability   : experimental
+Portability : POSIX
+-}
 module Cube (cube, cubeFrame) where
  
 import Graphics.UI.GLUT
@@ -24,8 +32,10 @@ cubeCoords = [ ( 1, 1, 1), ( 1, 1,-1), ( 1,-1,-1), ( 1,-1, 1),
     ( 1,-1, 1), ( 1,-1,-1), (-1,-1,-1), (-1,-1, 1),
     ( 1, 1,-1), ( 1,-1,-1), (-1,-1,-1), (-1, 1,-1) ]
 
+-- |The 'cubeFrame' function creates a wireframe cube at 0,0,0
 cubeFrame :: GLfloat -> IO ()
 cubeFrame w = renderPrimitive Lines $ mapM_ (vertexWithNormal . applyTo3Tuple (*w)) cubeCoords
 
+-- |The 'cube' function creates a solid cube at 0,0,0
 cube :: GLdouble -> IO ()
 cube w = renderObject Solid (Cube $ w*2)

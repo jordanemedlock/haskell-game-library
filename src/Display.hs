@@ -1,3 +1,11 @@
+{-|
+Module      : Display
+Description : Holds the display function called by GLUT every time it wants to display something new
+Copyright   : (c) Jordan Medlock, 2015
+Maintainer  : jordanemedlock@gmail.com
+Stability   : experimental
+Portability : POSIX
+-}
 module Display (idle, display) where
  
 import Graphics.UI.GLUT
@@ -7,6 +15,7 @@ import Cube
 import Points
 import Graphics.Rendering.GLU.Raw (gluLookAt)
  
+-- |The 'display' function is called by GLUT and at the moment displays a bunch of cubes in a circle
 display :: IORef GLfloat -> IORef (GLfloat, GLfloat) -> DisplayCallback
 display angle pos = do 
   clear [ColorBuffer, DepthBuffer] -- clear depth buffer, too
@@ -26,6 +35,7 @@ display angle pos = do
       cube 0.3
   swapBuffers
  
+-- |The 'idle' function is called by GLUT every tick
 idle :: IORef GLfloat -> IORef GLfloat -> IdleCallback
 idle angle delta = do
   d <- get delta
