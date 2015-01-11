@@ -1,6 +1,6 @@
 {-|
 Module      : Display
-Description : Holds the display function called by GLUT every time it wants to display something new
+Description : Holds the display function called by GLUT every frame.
 Copyright   : (c) Jordan Medlock, 2015
 Maintainer  : jordanemedlock@gmail.com
 Stability   : experimental
@@ -13,7 +13,7 @@ import Control.Monad
 import Data.IORef
 import World
  
--- |The 'display' function is called by GLUT and at the moment displays a bunch of cubes in a circle
+-- |The 'display' function displays the world.
 display :: IORef World -> DisplayCallback
 display worldRef = do 
   world <- get worldRef
@@ -29,7 +29,7 @@ display worldRef = do
       goRender go
   swapBuffers
  
--- |The 'idle' function is called by GLUT every tick
+-- |The 'idle' function is called by GLUT every frame.
 idle :: IORef World -> IdleCallback
 idle worldRef = do
   world <- get worldRef

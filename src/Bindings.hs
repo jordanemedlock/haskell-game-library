@@ -13,7 +13,7 @@ import Graphics.UI.GLUT
 import Display
 import World
  
--- |The 'reshape' function is called whenever the window gets resized
+-- |The 'reshape' function is called whenever the window gets resized.
 reshape :: ReshapeCallback
 reshape (Size w 0) = reshape (Size w 1)
 reshape size@(Size width height) = do 
@@ -26,16 +26,8 @@ reshape size@(Size width height) = do
   postRedisplay Nothing
  
 -- |The 'keyboardMouse' function is called whenever the user hits a key or does 
--- something with the mouse
--- This one uses the keys:
--- 
---        * /space/ -> reverse direction
---        * /+/     -> increase speed
---        * /-/     -> decrease speed
---        * /left/  -> move left
---        * /right/ -> move right
---        * /up/    -> move up
---        * /down/  -> move downs
+-- something with the mouse.
+-- This function passes off control to the camera so that it can move.
 keyboardMouse :: IORef World -> KeyboardMouseCallback
 keyboardMouse _ (Char '\27') Down _ _ = exit -- ESC
 keyboardMouse worldRef key Down mods _ = do

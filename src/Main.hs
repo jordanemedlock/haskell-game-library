@@ -1,9 +1,19 @@
+{-|
+Module      : Main
+Description : My Haskell Video Game! I still have no idea what its going to be!
+Copyright   : (c) Jordan Medlock, 2015
+Maintainer  : jordanemedlock@gmail.com
+Stability   : experimental
+Portability : POSIX
+-}
+module Main where
+
 import Graphics.UI.GLUT
 import Bindings
 import Data.IORef
 import BuildWorld
 
--- |The 'initGL' function initializes the GL environment and creates the window
+-- |The 'initGL' function initializes the GL environment and creates the window.
 initGL :: IO ()
 initGL = do 
   (_progName, _args) <- getArgsAndInitialize
@@ -21,11 +31,10 @@ initGL = do
   blendFunc           $= (SrcAlpha, OneMinusSrcAlpha)
   colorMaterial       $= Just (FrontAndBack, AmbientAndDiffuse)
 
--- |The 'initCallbacks' function adds all the GLUT callbacks
+-- |The 'initCallbacks' function adds all the GLUT callbacks.
 initCallbacks :: IO ()
 initCallbacks = do
   world <- newIORef buildWorld
-
 
   displayCallback       $= display world
   idleCallback          $= Just (idle world)
