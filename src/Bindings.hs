@@ -11,6 +11,7 @@ module Bindings (idle, display, reshape, keyboardMouse) where
 import Data.IORef
 import Graphics.UI.GLUT
 import Display
+import World
  
 -- |The 'reshape' function is called whenever the window gets resized
 reshape :: ReshapeCallback
@@ -35,15 +36,13 @@ reshape size@(Size width height) = do
 --        * /right/ -> move right
 --        * /up/    -> move up
 --        * /down/  -> move downs
-keyboardMouse :: IORef GLfloat -> IORef (GLfloat, GLfloat) -> KeyboardMouseCallback
-keyboardMouse delta pos key Down _ _ = case key of 
-  (Char ' ') -> delta $~! negate
-  (Char '+') -> delta $~! (* 2)
-  (Char '-') -> delta $~! (/ 2)
-  (SpecialKey KeyLeft )   -> pos $~! \(x,y) -> (x-0.1,y)
-  (SpecialKey KeyRight )  -> pos $~! \(x,y) -> (x+0.1,y)
-  (SpecialKey KeyUp )     -> pos $~! \(x,y) -> (x,y+0.1)
-  (SpecialKey KeyDown )   -> pos $~! \(x,y) -> (x,y-0.1)
-  _ -> return ()
-keyboardMouse _ _ _ _ _ _ = return ()
+keyboardMouse :: IORef World -> KeyboardMouseCallback
+keyboardMouse _ (Char '\27') Down _ _ = exit -- ESC
+keyboardMouse worldRef key Down mods _ = do
+  world <- get worldRef
+  let newWorld = world { camera = cameraKeys (camera world) key mods }
+  worldRef $= newWorld
+  return ()
+keyboardMouse _ _ _ _ _ = return ()
+
 

@@ -1,6 +1,7 @@
 import Graphics.UI.GLUT
 import Bindings
 import Data.IORef
+import BuildWorld
 
 -- |The 'initGL' function initializes the GL environment and creates the window
 initGL :: IO ()
@@ -23,13 +24,12 @@ initGL = do
 -- |The 'initCallbacks' function adds all the GLUT callbacks
 initCallbacks :: IO ()
 initCallbacks = do
-  angle <- newIORef 0.0
-  delta <- newIORef 1
-  pos <- newIORef (0.0,0.0)
+  world <- newIORef buildWorld
 
-  displayCallback       $= display angle pos
-  idleCallback          $= Just (idle angle delta)
-  keyboardMouseCallback $= Just (keyboardMouse delta pos)
+
+  displayCallback       $= display world
+  idleCallback          $= Just (idle world)
+  keyboardMouseCallback $= Just (keyboardMouse world)
   reshapeCallback       $= Just reshape
 
 -- |The 'main' function runs the whole goddamn thing!

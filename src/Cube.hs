@@ -6,24 +6,12 @@ Maintainer  : jordanemedlock@gmail.com
 Stability   : experimental
 Portability : POSIX
 -}
-module Cube (cube, cubeFrame) where
+module Cube (cube) where
+
+import GameObject
+import Graphics.UI.GLUT hiding (position, color)
  
-import Graphics.UI.GLUT
- 
-vertex3f :: (GLfloat, GLfloat, GLfloat) -> IO ()
-vertex3f (x, y, z) = vertex $ Vertex3 x y z
-
-normal3f :: (GLfloat, GLfloat, GLfloat) -> IO ()
-normal3f (x, y, z) = normal $ Normal3 x y z
-
-vertexWithNormal :: (GLfloat, GLfloat, GLfloat) -> IO ()
-vertexWithNormal xyz = do
-  vertex3f xyz
-  normal3f xyz
-
-applyTo3Tuple :: (a -> b) -> (a, a, a) -> (b, b, b)
-applyTo3Tuple f (x,y,z) = (f x, f y, f z)
-
+{-# ANN cubeCoords "HLint: ignore" #-}
 cubeCoords :: [(GLfloat, GLfloat, GLfloat)]
 cubeCoords = [ ( 1, 1, 1), ( 1, 1,-1), ( 1,-1,-1), ( 1,-1, 1),
     ( 1, 1, 1), ( 1, 1,-1), (-1, 1,-1), (-1, 1, 1),
@@ -32,10 +20,12 @@ cubeCoords = [ ( 1, 1, 1), ( 1, 1,-1), ( 1,-1,-1), ( 1,-1, 1),
     ( 1,-1, 1), ( 1,-1,-1), (-1,-1,-1), (-1,-1, 1),
     ( 1, 1,-1), ( 1,-1,-1), (-1,-1,-1), (-1, 1,-1) ]
 
--- |The 'cubeFrame' function creates a wireframe cube at 0,0,0
-cubeFrame :: GLfloat -> IO ()
-cubeFrame w = renderPrimitive Lines $ mapM_ (vertexWithNormal . applyTo3Tuple (*w)) cubeCoords
-
 -- |The 'cube' function creates a solid cube at 0,0,0
-cube :: GLdouble -> IO ()
-cube w = renderObject Solid (Cube $ w*2)
+cube :: GLdouble -> Int -> GameObject
+cube w i = GameObject { goPosition = (0,0,0), 
+                        goColor = Color3 1 1 1, 
+                        goRotation = (0,0,0), 
+                        goID = i, 
+                        goRender = renderObject Solid (Cube $ w*2), 
+                        goUpdate = defaultUpdate  
+                      }
