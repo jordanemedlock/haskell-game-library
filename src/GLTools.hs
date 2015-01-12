@@ -1,3 +1,11 @@
+{-|
+Module      : GLTools
+Description : A set of tools to make my life easier.
+Copyright   : (c) Jordan Medlock, 2015
+Maintainer  : jordanemedlock@gmail.com
+Stability   : experimental
+Portability : POSIX
+-}
 module GLTools where
 
 import Graphics.UI.GLUT

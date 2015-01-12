@@ -22,17 +22,23 @@ type Z = GLfloat
 
 -- |The 'GameObject' type stores all the information needed to draw an object to
 -- the GLUT context.
-data GameObject = SimpleObject { goPosition :: (X,Y,Z),
-                                 goRotation :: (X,Y,Z),
-                                 goRender :: IO ()
-                               } | 
-                 ComplexObject { goPosition :: (X,Y,Z),
-                                 goRotation :: (X,Y,Z),
-                                 goRender :: IO (),
-                                 goUpdate :: GameObject -> GameObject,
-                                 goKeyboard :: GameObject -> Key -> Modifiers -> GameObject,
-                                 goMouse :: GameObject -> MouseButton -> KeyState -> Position -> GameObject
-                               }
+data GameObject 
+  -- |The constructor 'SimpleObject' provides only the minimal information 
+  -- to draw the objects.
+  = SimpleObject { goPosition :: (X,Y,Z),
+                   goRotation :: (X,Y,Z),
+                   goRender :: IO ()
+                 } | 
+  -- |The constructor 'ComplexObject' provides additional callbacks for update,
+  -- keyboard and mouse
+   ComplexObject { goPosition :: (X,Y,Z),
+                   goRotation :: (X,Y,Z),
+                   goRender :: IO (),
+                   goUpdate :: GameObject -> GameObject,
+                   goKeyboard :: GameObject -> Key -> Modifiers -> GameObject,
+                   goMouse :: GameObject -> MouseButton -> KeyState -> Position -> GameObject
+                 }
+                 
 -- |The 'defaultUpdate' function is the simplest update you can give a game object.
 -- It is equivalent to 'id'.
 defaultUpdate :: GameObject -> GameObject

@@ -1,3 +1,11 @@
+{-|
+Module      : Box
+Description : A rectangular prism.
+Copyright   : (c) Jordan Medlock, 2015
+Maintainer  : jordanemedlock@gmail.com
+Stability   : experimental
+Portability : POSIX
+-}
 module Box (box) where
 
 import GameObject
@@ -51,6 +59,7 @@ drawBox w h d tex = do
     texCoord2f 1 0 >> drawVertex3f   w  (-h)   d
     texCoord2f 0 0 >> drawVertex3f (-w) (-h)   d
 
+-- |The 'box' function creates a box shape at (0,0,0).
 box :: TextureObject -> Width -> Height -> Depth -> GameObject
 box t w h d = SimpleObject {
   goPosition = (0,0,0),

@@ -1,3 +1,11 @@
+{-|
+Module      : Checkerboard
+Description : A checkerboard pattered rectangular prism.
+Copyright   : (c) Jordan Medlock, 2015
+Maintainer  : jordanemedlock@gmail.com
+Stability   : experimental
+Portability : POSIX
+-}
 module Checkerboard (checkerboard) where
 
 import Cube hiding (Width)
@@ -18,6 +26,8 @@ cp x y z = ((x'+y'+z') `mod` 2 == 0)
         y' = floor y :: Int
         z' = floor z :: Int
 
+-- |The 'checkerboard' function takes two textures and repeats them over and 
+-- over using a set of cubes.
 checkerboard :: TextureObject -> TextureObject -> (X, Y, Z) -> (Width, Height, Depth) -> [GameObject]
 checkerboard tex1 tex2 (x,y,z) (w,h,d) = output
   where smallest = minimum [w,h,d]

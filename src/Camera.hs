@@ -60,7 +60,7 @@ lookThrough c = do
 speed :: GLdouble
 speed = 1
 
--- |The 'cameraKeys' function accepts the key state and modifies the camera accordingly
+-- |The 'cameraKeys' function accepts the key state and modifies the camera accordingly.
 cameraKeys :: Camera -> Key -> Modifiers -> Camera
 cameraKeys cam (Char 'w') _ = cam { camPosition = (\(x,y,z) -> (x,y,z-speed)) (camPosition cam)} 
 cameraKeys cam (Char 'a') _ = cam { camPosition = (\(x,y,z) -> (x-speed,y,z)) (camPosition cam)} 

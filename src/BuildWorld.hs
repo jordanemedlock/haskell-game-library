@@ -1,6 +1,6 @@
 {-|
 Module      : BuildWorld
-Description : Builds the world
+Description : Builds the world.
 Copyright   : (c) Jordan Medlock, 2015
 Maintainer  : jordanemedlock@gmail.com
 Stability   : experimental
@@ -14,7 +14,7 @@ import Camera
 import Texture
 
 -- |The 'buildWorld' function creates all of the GameObjects in the world.
--- At the moment all this does is create 7 cubes in a circle.
+-- At the moment all this does is create a /possibly/ 10x10 checkerboard floor.
 buildWorld :: IO World
 buildWorld = do
   tex1 <- loadGLTextureFromFile "res/textures/brick1.png"
