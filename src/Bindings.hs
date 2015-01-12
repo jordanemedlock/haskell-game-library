@@ -21,7 +21,7 @@ reshape size@(Size width height) = do
   matrixMode $= Projection
   loadIdentity
   viewport $= (Position 0 0, size)
-  perspective 45.0 ratio 0.1 (100.0 :: GLdouble)
+  perspective 40.0 ratio 0.1 (100.0 :: GLdouble)
   matrixMode $= Modelview 0
   postRedisplay Nothing
  

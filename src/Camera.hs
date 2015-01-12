@@ -66,4 +66,6 @@ cameraKeys cam (Char 'w') _ = cam { camPosition = (\(x,y,z) -> (x,y,z-speed)) (c
 cameraKeys cam (Char 'a') _ = cam { camPosition = (\(x,y,z) -> (x-speed,y,z)) (camPosition cam)} 
 cameraKeys cam (Char 's') _ = cam { camPosition = (\(x,y,z) -> (x,y,z+speed)) (camPosition cam)} 
 cameraKeys cam (Char 'd') _ = cam { camPosition = (\(x,y,z) -> (x+speed,y,z)) (camPosition cam)} 
+cameraKeys cam (SpecialKey KeyShiftL) _ = cam { camPosition = (\(x,y,z) -> (x,y-speed,z)) (camPosition cam)} 
+cameraKeys cam (Char ' ') _ = cam { camPosition = (\(x,y,z) -> (x,y+speed,z)) (camPosition cam)} 
 cameraKeys c _ _ = c

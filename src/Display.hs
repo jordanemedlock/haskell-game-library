@@ -25,7 +25,6 @@ display worldRef = do
     forM_ (w) $ \go -> preservingMatrix $ do
       let (x,y,z) = goPosition go
       translate $ Vector3 x y z
-      color $ goColor go
       goRender go
   swapBuffers
  
