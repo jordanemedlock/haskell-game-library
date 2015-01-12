@@ -4,20 +4,120 @@
 		"selected_items":
 		[
 			[
+				"drwa",
+				"drawVertex3f"
+			],
+			[
+				"tex",
+				"texCoord2f"
+			],
+			[
+				"Tex",
+				"texCoord"
+			],
+			[
+				"draw",
+				"drawVertex3f"
+			],
+			[
+				"cu",
+				"cubeTexCoords"
+			],
+			[
+				"ve",
+				"vecTex"
+			],
+			[
+				"cub",
+				"cubeTexCoords"
+			],
+			[
+				"IO",
+				"IORef"
+			],
+			[
+				"bu",
+				"BuildWorld"
+			],
+			[
+				"Y",
+				"Yaw"
+			],
+			[
+				"up",
+				"updateGo"
+			],
+			[
+				"GL",
+				"GLfloat"
+			],
+			[
+				"ke",
+				"keyboardMouse"
+			],
+			[
+				"cam",
+				"cameraKeys"
+			],
+			[
+				"wo",
+				"worldRef"
+			],
+			[
+				"ca",
+				"cam"
+			],
+			[
+				"camer",
+				"cameraKeys"
+			],
+			[
+				"upda",
+				"updateCam"
+			],
+			[
+				"go",
+				"goPosition"
+			],
+			[
+				"cube",
+				"cubeCoords"
+			],
+			[
+				"de",
+				"defaultUpdate"
+			],
+			[
+				"w",
+				"worldRef"
+			],
+			[
+				"new",
+				"newGameObject"
+			],
+			[
+				"goR",
+				"goRotation"
+			],
+			[
+				"Color",
+				"Color3	data Color3 a"
+			],
+			[
+				"W",
+				"World"
+			],
+			[
+				"ini",
+				"initCallbacks"
+			],
+			[
 				"ver",
 				"vertexWithNormal"
 			],
 			[
 				"x",
 				"xyz"
-			],
-			[
-				"cub",
-				"cubeFrame"
-			],
-			[
-				"cu",
-				"cubeCoords"
 			],
 			[
 				"pos",
@@ -173,15 +273,48 @@
 			]
 		]
 	},
-	"buffers":
-	[
-	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 392.0,
+		"height": 307.0,
 		"selected_items":
 		[
+			[
+				"bro",
+				"SublimeHaskell: Browse Declarations"
+			],
+			[
+				"brow",
+				"SublimeHaskell: Browse Declarations"
+			],
+			[
+				"subli",
+				"SublimeHaskell: Browse module"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"liter",
+				"Set Syntax: Literate Haskell"
+			],
+			[
+				"create",
+				"Create file from Template"
+			],
+			[
+				"temp",
+				"Create file from Template"
+			],
+			[
+				"xml",
+				"Set Syntax: XML"
+			],
+			[
+				"fileTem",
+				"Create file from Template"
+			],
 			[
 				"haskell",
 				"SublimeHaskell: Browse module"
@@ -193,10 +326,6 @@
 			[
 				"swi",
 				"Set Syntax: Swift"
-			],
-			[
-				"in",
-				"Package Control: Install Package"
 			]
 		],
 		"width": 593.0
@@ -218,20 +347,33 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
-	"expanded_folders":
-	[
-		"/Users/jem/School/15/haskell_game"
-	],
 	"file_history":
 	[
+		"/Users/jem/School/15/haskell_game/src/Texture.hi",
+		"/Users/jem/School/15/haskell_game/haskell.docset/Contents/Resources/Documents/base-4.7.0.1/Data-Type-Equality.html",
+		"/Users/jem/School/15/haskell_game/src/Texture.hs",
+		"/Users/jem/School/15/haskell_game/src/Points.hs",
+		"/Users/jem/School/15/haskell_game/src/GLUtil-master/GLUtil.cabal",
+		"/Users/jem/School/15/haskell_game/src/Graphics/GLUtil/Linear.hs",
+		"/Users/jem/School/15/haskell_game/src/Camera.hs",
 		"/Users/jem/School/15/haskell_game/haskell-game.cabal",
+		"/Users/jem/School/15/haskell_game/src/lesson3b.lhs",
+		"/Users/jem/School/15/haskell_game/src/Bindings.hs",
+		"/Users/jem/School/15/haskell_game/src/Setup.hs",
+		"/Users/jem/School/15/haskell_game/src/GameObject.hs",
+		"/Users/jem/School/15/haskell_game/src/World.hs",
+		"/Users/jem/School/15/haskell_game/LICENSE",
+		"/Users/jem/School/15/haskell_game/dist/setup-config",
+		"/Users/jem/School/15/haskell_game/.gitignore",
+		"/Users/jem/School/15/haskell_game/src/Main.hs",
+		"/Users/jem/School/15/haskell_game/src/haddock.file-template",
+		"/Users/jem/School/15/haskell_game/src/GameObject",
 		"/Users/jem/School/15/haskell_game/Bindings.hs",
 		"/Users/jem/School/15/haskell_game/Points.hs",
 		"/Users/jem/School/15/haskell_game/Cube.hs",
 		"/Users/jem/School/15/haskell_game/Main.hs",
 		"/Users/jem/School/15/haskell_game/Display.hs",
 		"/Users/jem/School/15/haskell_game/Camera.hs",
-		"/Users/jem/School/15/haskell_game/LICENSE",
 		"/Users/jem/School/15/GMFR/GMFRBackend/GMFRBackendTests/GMFRBackendTests.swift",
 		"/Users/jem/School/15/GMFR/MyPlayground.playground/timeline.xctimeline",
 		"/Users/jem/School/15/GMFR/MyPlayground.playground/contents.xcplayground",
@@ -274,6 +416,20 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"cube",
+			"Left",
+			"Back",
+			"Front",
+			"1",
+			"GLfloat",
+			"Mouse",
+			"mouse",
+			"Mouse",
+			"init",
+			"GLfloat",
+			"x'",
+			"world",
+			"pos",
 			"x",
 			"Vector3",
 			"Vertex3",
@@ -312,14 +468,6 @@
 		"whole_word": false,
 		"wrap": true
 	},
-	"groups":
-	[
-		{
-			"sheets":
-			[
-			]
-		}
-	],
 	"incremental_find":
 	{
 		"height": 31.0
@@ -367,7 +515,6 @@
 	{
 		"height": 142.0
 	},
-	"project": "haskell-game.sublime-project",
 	"replace":
 	{
 		"height": 58.0
@@ -378,6 +525,26 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"tex",
+				"src/Texture.hs"
+			],
+			[
+				"lin",
+				"src/Graphics/GLUtil/Linear.hs"
+			],
+			[
+				"set",
+				"src/Setup.hs"
+			],
+			[
+				"wo",
+				"src/World.hs"
+			],
+			[
+				"po",
+				"src/Points.hs"
+			]
 		],
 		"width": 0.0
 	},
@@ -397,14 +564,13 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 0,
 	"settings":
 	{
 	},
 	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": true,
+	"side_bar_visible": false,
 	"side_bar_width": 150.0,
 	"status_bar_visible": true,
 	"template_settings":

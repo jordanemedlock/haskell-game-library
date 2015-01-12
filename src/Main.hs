@@ -19,22 +19,26 @@ initGL = do
   (_progName, _args) <- getArgsAndInitialize
   _window <- createWindow "Hello World"
   windowSize          $= (Size 1000 1000)
-  initialDisplayMode  $= [WithDepthBuffer, DoubleBuffered, RGBMode]
+  initialDisplayMode  $= [WithDepthBuffer, DoubleBuffered]
   depthFunc           $= Just Less -- the comparison function for depth the buffer
   shadeModel          $= Smooth
-  depthFunc           $= Just Less -- the comparison function for depth the buffer
   lighting            $= Enabled
-  lightModelAmbient   $= Color4 0.5 0.5 0.5 1
+  clearColor          $= Color4 0 0 0 0
+  lightModelAmbient   $= Color4 1 1 1 1
   light (Light 0)     $= Enabled
   diffuse (Light 0)   $= Color4 1 1 1 1
   blend               $= Enabled
   blendFunc           $= (SrcAlpha, OneMinusSrcAlpha)
   colorMaterial       $= Just (FrontAndBack, AmbientAndDiffuse)
+  texture Texture2D   $= Enabled
+  normalize           $= Enabled
+  cullFace            $= Nothing
 
 -- |The 'initCallbacks' function adds all the GLUT callbacks.
 initCallbacks :: IO ()
 initCallbacks = do
-  world <- newIORef buildWorld
+  w <- buildWorld
+  world <- newIORef w
 
   displayCallback       $= display world
   idleCallback          $= Just (idle world)
