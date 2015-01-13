@@ -8,52 +8,62 @@ Portability : POSIX
 -}
 module Main where
 
-import Graphics.UI.GLUT
-import Bindings
-import Data.IORef
+import Graphics.UI.GLFW
+import Prelude hiding (init)
+import Data.IORef 
 import BuildWorld
-import Data.Time.Clock.POSIX
+import World
+
+errorCallback :: ErrorCallback
+errorCallback e s = putStrLn $ (show e) ++ " " ++ s
+
+
+mainLoop :: Window -> IO ()
+mainLoop _window = do
+  x <- windowShouldClose _window
+  case not x of 
+    False -> return ()
+    True -> do
+
+      -- Render here
+
+      swapBuffers _window
+
+      pollEvents
+
+      mainLoop _window
+
 
 -- |The 'initGL' function initializes the GL environment and creates the window.
-initGL :: IO ()
+initGL :: IO (Window)
 initGL = do 
-  (_progName, _args) <- getArgsAndInitialize
-  _window <- createWindow "Hello World"
-  windowSize          $= (Size 1000 1000)
-  initialDisplayMode  $= [WithDepthBuffer, DoubleBuffered]
-  depthFunc           $= Just Less -- the comparison function for depth the buffer
-  shadeModel          $= Smooth
-  lighting            $= Enabled
-  clearColor          $= Color4 0 0 0 0
-  lightModelAmbient   $= Color4 1 1 1 1
-  light (Light 0)     $= Enabled
-  diffuse (Light 0)   $= Color4 1 1 1 1
-  blend               $= Enabled
-  blendFunc           $= (SrcAlpha, OneMinusSrcAlpha)
-  colorMaterial       $= Just (FrontAndBack, AmbientAndDiffuse)
-  texture Texture2D   $= Enabled
-  normalize           $= Enabled
-  cullFace            $= Nothing
-  globalKeyRepeat     $= GlobalKeyRepeatOn
+  True <- init
+  _monitor <- getPrimaryMonitor 
+  (Just _window) <- createWindow 1000 1000 "Hello World!" _monitor Nothing
+  makeContextCurrent $ Just _window
+  return _window
 
 -- |The 'initCallbacks' function adds all the GLUT callbacks.
-initCallbacks :: IO ()
-initCallbacks = do
-  w <- buildWorld
-  world <- newIORef w
-  t <- getPOSIXTime
-  time <- newIORef t
+initCallbacks :: IORef World -> IO ()
+initCallbacks worldRef = do
 
-  displayCallback       $= display world
-  idleCallback          $= Just (idle world time)
-  keyboardMouseCallback $= Just (keyboardMouse world)
-  reshapeCallback       $= Just reshape
+  setErrorCallback $ Just errorCallback
+
+  
+
+  return ()
 
 -- |The 'main' function runs the whole goddamn thing!
 main :: IO ()
 main = do
-  initGL
+  world <- buildWorld
+  worldRef <- newIORef world
 
-  initCallbacks
 
-  mainLoop
+  _window <- initGL
+
+  initCallbacks worldRef
+
+  mainLoop _window
+
+  terminate

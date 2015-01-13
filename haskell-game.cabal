@@ -58,6 +58,7 @@ executable haskell-game
   
   -- Other library packages from which modules are imported.
   build-depends:       base >=4.7 && <4.8, 
+                       GLFW-b,
                        GLUT >=2.5 && <2.6, 
                        GLURaw >=1.4 && <1.5, 
                        OpenGL >=2.9 && <2.10,

@@ -1,6 +1,7 @@
 # TODO:
 
-- Switch to GLFW 
+- Switch to GLFW √
+  - Switch bindings to GLFW
 - Make mouse stuff work
 - Make obj loade3r
 - Make obj models
