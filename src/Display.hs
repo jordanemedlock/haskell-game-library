@@ -6,7 +6,7 @@ Maintainer  : jordanemedlock@gmail.com
 Stability   : experimental
 Portability : POSIX
 -}
-module Display (idle, display) where
+module Display (display) where
  
 import Graphics.UI.GLUT hiding (position)
 import Control.Monad
@@ -28,9 +28,3 @@ display worldRef = do
       goRender go
   swapBuffers
  
--- |The 'idle' function is called by GLUT every frame.
-idle :: IORef World -> IdleCallback
-idle worldRef = do
-  world <- get worldRef
-  worldRef $= woUpdate world
-  postRedisplay Nothing

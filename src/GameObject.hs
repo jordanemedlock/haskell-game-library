@@ -14,6 +14,7 @@ module GameObject (
 ) where
 
 import Graphics.UI.GLUT
+import Data.Time.Clock
 
 type GOID = Int
 type X = GLfloat
@@ -34,18 +35,18 @@ data GameObject
    ComplexObject { goPosition :: (X,Y,Z),
                    goRotation :: (X,Y,Z),
                    goRender :: IO (),
-                   goUpdate :: GameObject -> GameObject,
+                   goUpdate :: NominalDiffTime -> GameObject -> GameObject,
                    goKeyboard :: GameObject -> Key -> Modifiers -> GameObject,
                    goMouse :: GameObject -> MouseButton -> KeyState -> Position -> GameObject
                  }
                  
 -- |The 'defaultUpdate' function is the simplest update you can give a game object.
 -- It is equivalent to 'id'.
-defaultUpdate :: GameObject -> GameObject
-defaultUpdate go = go
+defaultUpdate :: NominalDiffTime -> GameObject -> GameObject
+defaultUpdate _ go = go
 
 -- |The 'updateGo' function is a convenience function which turns the goUpdate 
 -- function into one that only requires one 'GameObject' argument.
-updateGo :: GameObject -> GameObject
-updateGo go@(SimpleObject _ _ _ ) = go
-updateGo go@(ComplexObject _ _ _ u _ _) = u go
+updateGo :: NominalDiffTime -> GameObject -> GameObject
+updateGo _  go@(SimpleObject _ _ _ ) = go
+updateGo dt go@(ComplexObject _ _ _ u _ _) = u dt go

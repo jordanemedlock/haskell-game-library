@@ -12,6 +12,7 @@ import Graphics.UI.GLUT
 import Bindings
 import Data.IORef
 import BuildWorld
+import Data.Time.Clock.POSIX
 
 -- |The 'initGL' function initializes the GL environment and creates the window.
 initGL :: IO ()
@@ -33,15 +34,18 @@ initGL = do
   texture Texture2D   $= Enabled
   normalize           $= Enabled
   cullFace            $= Nothing
+  globalKeyRepeat     $= GlobalKeyRepeatOn
 
 -- |The 'initCallbacks' function adds all the GLUT callbacks.
 initCallbacks :: IO ()
 initCallbacks = do
   w <- buildWorld
   world <- newIORef w
+  t <- getPOSIXTime
+  time <- newIORef t
 
   displayCallback       $= display world
-  idleCallback          $= Just (idle world)
+  idleCallback          $= Just (idle world time)
   keyboardMouseCallback $= Just (keyboardMouse world)
   reshapeCallback       $= Just reshape
 

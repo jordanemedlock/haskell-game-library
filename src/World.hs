@@ -12,19 +12,21 @@ module World (
   GameObject(..),
   Camera(..),
   lookThrough,
-  cameraKeys
+  cameraKeyDown,
+  cameraKeyUp
 )
 where
 
 import GameObject
 import Camera
+import Data.Time.Clock
 
 -- |The 'World' type represents the world state of the game.
 data World = World { gameObjects :: [GameObject],
                      camera :: Camera }
 
 -- |The 'woUpdate' function recursively updates all the objects stored in the world.
-woUpdate :: World -> World
-woUpdate w = World { gameObjects = map updateGo (gameObjects w),
-                     camera      = updateCam (camera w)
-                   }
+woUpdate :: World -> NominalDiffTime -> World
+woUpdate w dt = World  { gameObjects = map (updateGo dt) (gameObjects w),
+                         camera      = updateCam dt (camera w)
+                       }

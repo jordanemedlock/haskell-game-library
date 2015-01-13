@@ -63,7 +63,8 @@ executable haskell-game
                        OpenGL >=2.9 && <2.10,
                        OpenGLRaw,
                        GLUtil,
-                       JuicyPixels
+                       JuicyPixels,
+                       time
   
   -- Directories containing source files.
   hs-source-dirs:      src
