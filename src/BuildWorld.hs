@@ -21,5 +21,5 @@ buildWorld = do
   tex2 <- loadGLTextureFromFile "res/textures/brick2.png"
   return $ World {
     gameObjects = (checkerboard tex1 tex2 (0,0,0) (10,1,10)),
-    camera      = newCamera 0 0 0
+    camera      = newCamera 0 5 0
   }

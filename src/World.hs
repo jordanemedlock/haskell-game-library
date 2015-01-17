@@ -12,8 +12,7 @@ module World (
   GameObject(..),
   Camera(..),
   lookThrough,
-  cameraKeyDown,
-  cameraKeyUp
+  cameraKey
 )
 where
 

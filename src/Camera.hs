@@ -1,3 +1,4 @@
+{-# LANGUAGE RankNTypes #-}
 {-|
 Module      : Camera
 Description : The Camera object.
@@ -11,24 +12,28 @@ module Camera (
   newCamera,
   updateCam,
   lookThrough,
-  cameraKeyDown,
-  cameraKeyUp,
+  cameraKey,
   X,Y,Z,
   Yaw,Pitch,Roll
 ) where
 
-import Graphics.UI.GLUT
+import Graphics.UI.GLFW
 import Graphics.Rendering.GLU.Raw (gluLookAt)
 import Data.Time.Clock
 
-type X = GLdouble
-type Y = GLdouble
-type Z = GLdouble
+type X = Double
+type Y = Double
+type Z = Double
 
-type Yaw = GLdouble
-type Pitch = GLdouble
-type Roll = GLdouble
+type Yaw = Double
+type Pitch = Double
+type Roll = Double
 
+lookAt :: forall a. Real a => a -> a -> a -> a -> a -> a -> a -> a -> a -> IO ()
+lookAt a b c
+       d e f 
+       g h i = gluLookAt a' b' c' d' e' f' g' h' i'
+       where [a',b',c',d',e',f',g',h',i'] = map realToFrac [a,b,c,d,e,f,g,h,i]
 
 -- |The 'Camera' structure holds all of the necessary information to dictate 
 -- where the camera should be placed and how.
@@ -78,9 +83,9 @@ lookThrough c = do
   let dy = realToFrac $ -sin(pitch')
   let dz = realToFrac $ -cos(yaw')
 
-  gluLookAt x y z
-            (x+dx) (y+dy) (z+dz)
-            0 1 0
+  lookAt x      y      z
+         (x+dx) (y+dy) (z+dz)
+         0      1      0
 
 roll :: Camera -> Roll
 roll c = r
@@ -93,15 +98,15 @@ yaw c = y
   where (_,_,y) = camRotation c
 
 
-speed :: GLdouble
+speed :: Double
 speed = (pi/3.14)*7
 
-rotSpeed :: GLdouble
+rotSpeed :: Double
 rotSpeed = (pi/3.14)*1.5
 
-scaleX :: NominalDiffTime -> Yaw -> GLdouble
+scaleX :: NominalDiffTime -> Yaw -> Double
 scaleX dt y = (realToFrac dt) * speed * sin(y)
-scaleZ :: NominalDiffTime -> Yaw -> GLdouble
+scaleZ :: NominalDiffTime -> Yaw -> Double
 scaleZ dt y = (realToFrac dt) * speed * cos(y)
 
 checkPitch :: Camera -> Camera
@@ -110,34 +115,29 @@ checkPitch cam | pitch cam > pi/2 = cam { camRotation = (roll cam, pi/2, yaw cam
                | otherwise = cam 
 
 -- |The 'cameraKeyDown' function accepts the key state and modifies the camera accordingly.
-cameraKeyDown :: Camera -> Key -> Camera
-cameraKeyDown cam (Char 'w')               = cam { camMoving = (\(x,y,_)->(x,y,-1)) (camMoving cam)} 
-cameraKeyDown cam (Char 'a')               = cam { camMoving = (\(_,y,z)->( 1,y,z)) (camMoving cam)} 
-cameraKeyDown cam (Char 's')               = cam { camMoving = (\(x,y,_)->(x,y, 1)) (camMoving cam)} 
-cameraKeyDown cam (Char 'd')               = cam { camMoving = (\(_,y,z)->(-1,y,z)) (camMoving cam)} 
-cameraKeyDown cam (Char ' ')               = cam { camMoving = (\(x,_,z)->(x, 1,z)) (camMoving cam)} 
-cameraKeyDown cam (SpecialKey KeyShiftL)   = cam { camMoving = (\(x,_,z)->(x,-1,z)) (camMoving cam)} 
+cameraKey :: Camera -> Key -> KeyState -> ModifierKeys -> Camera
+cameraKey cam Key'W         KeyState'Pressed _ = cam { camMoving = (\(x,y,_)->(x,y,-1)) (camMoving cam)} 
+cameraKey cam Key'A         KeyState'Pressed _ = cam { camMoving = (\(_,y,z)->( 1,y,z)) (camMoving cam)} 
+cameraKey cam Key'S         KeyState'Pressed _ = cam { camMoving = (\(x,y,_)->(x,y, 1)) (camMoving cam)} 
+cameraKey cam Key'D         KeyState'Pressed _ = cam { camMoving = (\(_,y,z)->(-1,y,z)) (camMoving cam)} 
+cameraKey cam Key'Space     KeyState'Pressed _ = cam { camMoving = (\(x,_,z)->(x, 1,z)) (camMoving cam)} 
+cameraKey cam Key'LeftShift KeyState'Pressed _ = cam { camMoving = (\(x,_,z)->(x,-1,z)) (camMoving cam)} 
+cameraKey cam Key'Up        KeyState'Pressed _ = cam { camTurning = (\(r,_,y)->(r,-1,y)) (camTurning cam)}
+cameraKey cam Key'Down      KeyState'Pressed _ = cam { camTurning = (\(r,_,y)->(r, 1,y)) (camTurning cam)}
+cameraKey cam Key'Left      KeyState'Pressed _ = cam { camTurning = (\(r,p,_)->(r,p,-1)) (camTurning cam)}
+cameraKey cam Key'Right     KeyState'Pressed _ = cam { camTurning = (\(r,p,_)->(r,p, 1)) (camTurning cam)}
 
-cameraKeyDown cam (SpecialKey KeyUp)     = cam { camTurning = (\(r,_,y)->(r,-1,y)) (camTurning cam)}
-cameraKeyDown cam (SpecialKey KeyDown)   = cam { camTurning = (\(r,_,y)->(r, 1,y)) (camTurning cam)}
-cameraKeyDown cam (SpecialKey KeyLeft)   = cam { camTurning = (\(r,p,_)->(r,p,-1)) (camTurning cam)}
-cameraKeyDown cam (SpecialKey KeyRight)  = cam { camTurning = (\(r,p,_)->(r,p, 1)) (camTurning cam)}
-cameraKeyDown c _ = c
-
--- |The 'cameraKeyDown' function accepts the key state and modifies the camera accordingly.
-cameraKeyUp :: Camera -> Key -> Camera
-cameraKeyUp cam (Char 'w')               = cam { camMoving = (\(x,y,_)->(x,y,0)) (camMoving cam)} 
-cameraKeyUp cam (Char 'a')               = cam { camMoving = (\(_,y,z)->(0,y,z)) (camMoving cam)} 
-cameraKeyUp cam (Char 's')               = cam { camMoving = (\(x,y,_)->(x,y,0)) (camMoving cam)} 
-cameraKeyUp cam (Char 'd')               = cam { camMoving = (\(_,y,z)->(0,y,z)) (camMoving cam)} 
-cameraKeyUp cam (Char ' ')               = cam { camMoving = (\(x,_,z)->(x,0,z)) (camMoving cam)} 
-cameraKeyUp cam (SpecialKey KeyShiftL)   = cam { camMoving = (\(x,_,z)->(x,0,z)) (camMoving cam)} 
-
-cameraKeyUp cam (SpecialKey KeyUp)     = checkPitch $  cam { camTurning = (\(r,_,y)->(r,0,y)) (camTurning cam)}
-cameraKeyUp cam (SpecialKey KeyDown)   = checkPitch $  cam { camTurning = (\(r,_,y)->(r,0,y)) (camTurning cam)}
-cameraKeyUp cam (SpecialKey KeyLeft)   =               cam { camTurning = (\(r,p,_)->(r,p,0)) (camTurning cam)}
-cameraKeyUp cam (SpecialKey KeyRight)  =               cam { camTurning = (\(r,p,_)->(r,p,0)) (camTurning cam)}
-cameraKeyUp c _ = c
+cameraKey cam Key'W         KeyState'Released _ = cam { camMoving = (\(x,y,_)->(x,y,0)) (camMoving cam)} 
+cameraKey cam Key'A         KeyState'Released _ = cam { camMoving = (\(_,y,z)->(0,y,z)) (camMoving cam)} 
+cameraKey cam Key'S         KeyState'Released _ = cam { camMoving = (\(x,y,_)->(x,y,0)) (camMoving cam)} 
+cameraKey cam Key'D         KeyState'Released _ = cam { camMoving = (\(_,y,z)->(0,y,z)) (camMoving cam)} 
+cameraKey cam Key'Space     KeyState'Released _ = cam { camMoving = (\(x,_,z)->(x,0,z)) (camMoving cam)} 
+cameraKey cam Key'LeftShift KeyState'Released _ = cam { camMoving = (\(x,_,z)->(x,0,z)) (camMoving cam)} 
+cameraKey cam Key'Up        KeyState'Released _ = cam { camTurning = (\(r,_,y)->(r,0,y)) (camTurning cam)}
+cameraKey cam Key'Down      KeyState'Released _ = cam { camTurning = (\(r,_,y)->(r,0,y)) (camTurning cam)}
+cameraKey cam Key'Left      KeyState'Released _ = cam { camTurning = (\(r,p,_)->(r,p,0)) (camTurning cam)}
+cameraKey cam Key'Right     KeyState'Released _ = cam { camTurning = (\(r,p,_)->(r,p,0)) (camTurning cam)}
+cameraKey cam _             _                 _ = cam
 
 -- -- |The 'cameraKeyDown' function accepts the key state and modifies the camera accordingly.
 -- cameraKeyDown :: Camera -> Key -> Modifiers -> Camera
