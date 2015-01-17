@@ -4,20 +4,76 @@
 		"selected_items":
 		[
 			[
+				"wor",
+				"worldRef"
+			],
+			[
+				"main",
+				"mainLoop"
+			],
+			[
+				"spe",
+				"specialUp"
+			],
+			[
+				"key",
+				"keyboardUp"
+			],
+			[
+				"ke",
+				"keyboardDown"
+			],
+			[
+				"new",
+				"newtype"
+			],
+			[
+				"worl",
+				"world"
+			],
+			[
+				"world",
+				"worldRef"
+			],
+			[
+				"up",
+				"updatePos"
+			],
+			[
+				"cam",
+				"camPosition"
+			],
+			[
+				"sc",
+				"scaleX"
+			],
+			[
+				"scale",
+				"scaleX"
+			],
+			[
+				"ro",
+				"rotSpeed"
+			],
+			[
+				"te",
+				"tex2"
+			],
+			[
+				"tex",
+				"tex1"
+			],
+			[
+				"draw",
+				"drawBox"
+			],
+			[
 				"drwa",
 				"drawVertex3f"
 			],
 			[
-				"tex",
-				"texCoord2f"
-			],
-			[
 				"Tex",
 				"texCoord"
-			],
-			[
-				"draw",
-				"drawVertex3f"
 			],
 			[
 				"cu",
@@ -44,20 +100,8 @@
 				"Yaw"
 			],
 			[
-				"up",
-				"updateGo"
-			],
-			[
 				"GL",
 				"GLfloat"
-			],
-			[
-				"ke",
-				"keyboardMouse"
-			],
-			[
-				"cam",
-				"cameraKeys"
 			],
 			[
 				"wo",
@@ -90,10 +134,6 @@
 			[
 				"w",
 				"worldRef"
-			],
-			[
-				"new",
-				"newGameObject"
 			],
 			[
 				"goR",
@@ -276,9 +316,25 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 307.0,
+		"height": 392.0,
 		"selected_items":
 		[
+			[
+				"bu",
+				"Build: Build"
+			],
+			[
+				"bui",
+				"Build: Build"
+			],
+			[
+				"sublime",
+				"SublimeHaskell: Build"
+			],
+			[
+				"run",
+				"SublimeHaskell: Run"
+			],
 			[
 				"bro",
 				"SublimeHaskell: Browse Declarations"
@@ -349,14 +405,37 @@
 	},
 	"file_history":
 	[
+		"/Users/jem/School/15/haskell_game/TODO.txt",
+		"/Users/jem/School/15/haskell_game/README.md",
+		"/Users/jem/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/etc/apache2/httpd.conf",
+		"/Users/jem/School/15/haskell_game/haskell-game.cabal",
+		"/Users/jem/School/15/mikey/multiplicationTables.py",
+		"/Users/jem/School/15/haskell_game/haskell.docset/Contents/Resources/Haddock/Cabal-1.18.1.4.haddock",
+		"/Users/jem/School/15/haskell_game/haskell.docset/Contents/Resources/Documents/Cabal-1.18.1.4/Cabal.haddock.t",
+		"/Users/jem/School/15/haskell_game/haskell.docset/Contents/Resources/Documents/Cabal-1.18.1.4/Cabal.txt",
+		"/Users/jem/School/15/haskell_game/dist/build/autogen/cabal_macros.h",
+		"/Users/jem/School/15/haskell_game/haskell.docset/Contents/Resources/Documents/transformers-0.3.0.0/Control-Applicative-Backwards.html",
+		"/Users/jem/School/15/haskell_game/src/Camera.hs",
+		"/Users/jem/School/15/independent_study/notes.txt",
+		"/Users/jem/School/15/haskell_game/haskell.docset/Contents/Resources/Documents/doc-index-S.html",
+		"/Users/jem/School/15/haskell_game/doc-index.html",
+		"/Users/jem/School/15/haskell_game/src/Direction.hs",
+		"/Users/jem/School/15/haskell_game/ocean.css",
+		"/Users/jem/School/15/haskell_game/.gitignore",
+		"/Users/jem/School/15/haskell_game/mini_Camera.html",
+		"/Users/jem/School/15/haskell_game/Camera.html",
+		"/Users/jem/School/15/haskell_game/haskell.docset/Contents/Resources/Documents/base-4.7.0.1/Control-Applicative.html",
+		"/Users/jem/School/15/haskell_game/haskell.docset/Contents/Resources/Documents/doc-index-R.html",
+		"/Users/jem/School/15/haskell_game/src/test.hs",
+		"/Users/jem/School/15/haskell_game/haskell.docset/Contents/Resources/Documents/binary-0.7.1.0/Data-Binary-Builder-Internal.html",
+		"/Users/jem/School/15/haskell_game/haskell.docset/Contents/Resources/Documents/ghc-prim-0.3.1.0/GHC-Magic.html",
 		"/Users/jem/School/15/haskell_game/src/Texture.hi",
 		"/Users/jem/School/15/haskell_game/haskell.docset/Contents/Resources/Documents/base-4.7.0.1/Data-Type-Equality.html",
 		"/Users/jem/School/15/haskell_game/src/Texture.hs",
 		"/Users/jem/School/15/haskell_game/src/Points.hs",
 		"/Users/jem/School/15/haskell_game/src/GLUtil-master/GLUtil.cabal",
 		"/Users/jem/School/15/haskell_game/src/Graphics/GLUtil/Linear.hs",
-		"/Users/jem/School/15/haskell_game/src/Camera.hs",
-		"/Users/jem/School/15/haskell_game/haskell-game.cabal",
 		"/Users/jem/School/15/haskell_game/src/lesson3b.lhs",
 		"/Users/jem/School/15/haskell_game/src/Bindings.hs",
 		"/Users/jem/School/15/haskell_game/src/Setup.hs",
@@ -364,7 +443,6 @@
 		"/Users/jem/School/15/haskell_game/src/World.hs",
 		"/Users/jem/School/15/haskell_game/LICENSE",
 		"/Users/jem/School/15/haskell_game/dist/setup-config",
-		"/Users/jem/School/15/haskell_game/.gitignore",
 		"/Users/jem/School/15/haskell_game/src/Main.hs",
 		"/Users/jem/School/15/haskell_game/src/haddock.file-template",
 		"/Users/jem/School/15/haskell_game/src/GameObject",
@@ -377,7 +455,6 @@
 		"/Users/jem/School/15/GMFR/GMFRBackend/GMFRBackendTests/GMFRBackendTests.swift",
 		"/Users/jem/School/15/GMFR/MyPlayground.playground/timeline.xctimeline",
 		"/Users/jem/School/15/GMFR/MyPlayground.playground/contents.xcplayground",
-		"/Users/jem/School/15/mikey/multiplicationTables.py",
 		"/Users/jem/School/14/robotics/baymax.py",
 		"/Users/jem/School/14/robotics/utilities.py",
 		"/Users/jem/School/14/robotics/robotics.sublime-project",
@@ -402,7 +479,7 @@
 	],
 	"find":
 	{
-		"height": 31.0
+		"height": 38.0
 	},
 	"find_in_files":
 	{
@@ -416,6 +493,31 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"DEBUG",
+			"8",
+			"4",
+			"_",
+			"yaw",
+			"pitch",
+			"roll",
+			"yaw",
+			"keyboard",
+			"Down",
+			"keyboard",
+			"Keyboard",
+			"keyboard",
+			"Mouse",
+			"mouse",
+			"Mouse",
+			"1",
+			"Down",
+			"camMoving",
+			"cameraKeys",
+			"float",
+			"fromRational",
+			"Fractional",
+			"GameObject.",
+			"Cube",
 			"cube",
 			"Left",
 			"Back",
@@ -526,6 +628,38 @@
 		"selected_items":
 		[
 			[
+				"cabal",
+				"haskell-game.cabal"
+			],
+			[
+				"wo",
+				"src/World.hs"
+			],
+			[
+				"displa",
+				"src/Display.hs"
+			],
+			[
+				".cabal",
+				"haskell-game.cabal"
+			],
+			[
+				"camera",
+				"src/Camera.hs"
+			],
+			[
+				"dire",
+				"src/Direction.hs"
+			],
+			[
+				"bin",
+				"src/Bindings.hs"
+			],
+			[
+				"gameo",
+				"src/GameObject.hs"
+			],
+			[
 				"tex",
 				"src/Texture.hs"
 			],
@@ -536,10 +670,6 @@
 			[
 				"set",
 				"src/Setup.hs"
-			],
-			[
-				"wo",
-				"src/World.hs"
 			],
 			[
 				"po",
@@ -570,8 +700,8 @@
 	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": false,
-	"side_bar_width": 150.0,
+	"side_bar_visible": true,
+	"side_bar_width": 221.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
