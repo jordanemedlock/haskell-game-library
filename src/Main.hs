@@ -31,7 +31,7 @@ mainLoop _window worldRef timeRef = do
 
       -- Render here
       display worldRef _window
-      idle worldRef timeRef
+      idle worldRef timeRef _window
 
       swapBuffers _window
 
