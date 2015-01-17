@@ -2,7 +2,7 @@
 
 - Switch to GLFW 
 - Make mouse stuff work
-- Make obj loade3r
+- Make obj loader
 - Make obj models
 - Add Physics
-- Add character
+- Add character model/physics

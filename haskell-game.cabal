@@ -64,7 +64,8 @@ executable haskell-game
                        OpenGLRaw,
                        GLUtil,
                        JuicyPixels,
-                       time
+                       time,
+                       lens
   
   -- Directories containing source files.
   hs-source-dirs:      src
