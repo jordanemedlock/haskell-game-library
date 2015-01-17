@@ -13,12 +13,14 @@ module Camera (
   updateCam,
   lookThrough,
   cameraKey,
+  cameraMouse,
   X,Y,Z,
   Yaw,Pitch,Roll
 ) where
 
 import Graphics.UI.GLFW
-import Graphics.Rendering.GLU.Raw (gluLookAt)
+import Graphics.Rendering.OpenGL.Raw
+import Graphics.Rendering.GLU.Raw
 import Data.Time.Clock
 
 type X = Double
@@ -75,13 +77,20 @@ updatePos dt cam@(Camera (x,y,z) ( 1,dy, 1) (_,_,yaw') _) = cam {camPosition = (
 
 -- |The 'lookThrough' function uses the cameras position to move the 3D environment
 -- to the cameras perspective.
-lookThrough :: Camera -> IO ()
-lookThrough c = do
+lookThrough :: Camera -> Int -> Int -> IO ()
+lookThrough c width height = do
   let (x,y,z) = camPosition c
   let (_,pitch',yaw') = camRotation c
   let dx = realToFrac $ sin(yaw')
   let dy = realToFrac $ -sin(pitch')
   let dz = realToFrac $ -cos(yaw')
+
+  let ratio = ( fromIntegral width / fromIntegral height ) :: Double
+  glMatrixMode gl_PROJECTION 
+  glLoadIdentity
+  glViewport 0 0 (fromIntegral width*2) (fromIntegral height*2)
+  gluPerspective 40.0 (realToFrac ratio) 0.1 100.0
+  glMatrixMode gl_MODELVIEW
 
   lookAt x      y      z
          (x+dx) (y+dy) (z+dz)
@@ -102,7 +111,7 @@ speed :: Double
 speed = (pi/3.14)*7
 
 rotSpeed :: Double
-rotSpeed = (pi/3.14)*1.5
+rotSpeed = (pi/3.14)*0.002
 
 scaleX :: NominalDiffTime -> Yaw -> Double
 scaleX dt y = (realToFrac dt) * speed * sin(y)
@@ -112,7 +121,12 @@ scaleZ dt y = (realToFrac dt) * speed * cos(y)
 checkPitch :: Camera -> Camera
 checkPitch cam | pitch cam > pi/2 = cam { camRotation = (roll cam, pi/2, yaw cam) }
                | pitch cam < -pi/2 = cam { camRotation = (roll cam, -pi/2, yaw cam) }
-               | otherwise = cam 
+               | otherwise = cam
+
+movePitch :: Pitch -> Pitch
+movePitch p | p * rotSpeed > pi/2 = pi/2 / rotSpeed
+            | p * rotSpeed < -pi/2 = pi/2 / rotSpeed
+            | otherwise = p
 
 -- |The 'cameraKeyDown' function accepts the key state and modifies the camera accordingly.
 cameraKey :: Camera -> Key -> KeyState -> ModifierKeys -> Camera
@@ -122,10 +136,6 @@ cameraKey cam Key'S         KeyState'Pressed _ = cam { camMoving = (\(x,y,_)->(x
 cameraKey cam Key'D         KeyState'Pressed _ = cam { camMoving = (\(_,y,z)->(-1,y,z)) (camMoving cam)} 
 cameraKey cam Key'Space     KeyState'Pressed _ = cam { camMoving = (\(x,_,z)->(x, 1,z)) (camMoving cam)} 
 cameraKey cam Key'LeftShift KeyState'Pressed _ = cam { camMoving = (\(x,_,z)->(x,-1,z)) (camMoving cam)} 
-cameraKey cam Key'Up        KeyState'Pressed _ = cam { camTurning = (\(r,_,y)->(r,-1,y)) (camTurning cam)}
-cameraKey cam Key'Down      KeyState'Pressed _ = cam { camTurning = (\(r,_,y)->(r, 1,y)) (camTurning cam)}
-cameraKey cam Key'Left      KeyState'Pressed _ = cam { camTurning = (\(r,p,_)->(r,p,-1)) (camTurning cam)}
-cameraKey cam Key'Right     KeyState'Pressed _ = cam { camTurning = (\(r,p,_)->(r,p, 1)) (camTurning cam)}
 
 cameraKey cam Key'W         KeyState'Released _ = cam { camMoving = (\(x,y,_)->(x,y,0)) (camMoving cam)} 
 cameraKey cam Key'A         KeyState'Released _ = cam { camMoving = (\(_,y,z)->(0,y,z)) (camMoving cam)} 
@@ -133,11 +143,12 @@ cameraKey cam Key'S         KeyState'Released _ = cam { camMoving = (\(x,y,_)->(
 cameraKey cam Key'D         KeyState'Released _ = cam { camMoving = (\(_,y,z)->(0,y,z)) (camMoving cam)} 
 cameraKey cam Key'Space     KeyState'Released _ = cam { camMoving = (\(x,_,z)->(x,0,z)) (camMoving cam)} 
 cameraKey cam Key'LeftShift KeyState'Released _ = cam { camMoving = (\(x,_,z)->(x,0,z)) (camMoving cam)} 
-cameraKey cam Key'Up        KeyState'Released _ = cam { camTurning = (\(r,_,y)->(r,0,y)) (camTurning cam)}
-cameraKey cam Key'Down      KeyState'Released _ = cam { camTurning = (\(r,_,y)->(r,0,y)) (camTurning cam)}
-cameraKey cam Key'Left      KeyState'Released _ = cam { camTurning = (\(r,p,_)->(r,p,0)) (camTurning cam)}
-cameraKey cam Key'Right     KeyState'Released _ = cam { camTurning = (\(r,p,_)->(r,p,0)) (camTurning cam)}
 cameraKey cam _             _                 _ = cam
+
+cameraMouse :: Camera -> Yaw -> Pitch -> (Camera, Pitch)
+cameraMouse cam y p = (cam { camRotation = (\(r,_,_) -> (r,p'*rotSpeed,y*rotSpeed)) (camTurning cam) }, p')
+  where p' = movePitch p
+
 
 -- -- |The 'cameraKeyDown' function accepts the key state and modifies the camera accordingly.
 -- cameraKeyDown :: Camera -> Key -> Modifiers -> Camera

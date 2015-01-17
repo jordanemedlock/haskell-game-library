@@ -11,6 +11,7 @@ module Bindings (
   display, 
   reshape, 
   keyboard,
+  mouse
 ) where
 
 import Data.IORef
@@ -19,32 +20,23 @@ import World
 import Graphics.UI.GLFW
 import Data.Time.Clock.POSIX
 import Graphics.Rendering.OpenGL.Raw
-import Graphics.Rendering.GLU.Raw
 import Graphics.Rendering.OpenGL.GL.StateVar 
 
-debug :: (Show a) => a -> IO ()
-debug x = do
-  print x
+-- debug :: (Show a) => a -> IO ()
+-- debug x = do
+--   print x
 
 -- |The 'reshape' function is called whenever the window gets resized.
 reshape :: WindowSizeCallback
 reshape win w 0 = reshape win w 1
 reshape _   width height = do 
-  let ratio = ( fromIntegral width / fromIntegral height ) :: Double
-  glMatrixMode gl_PROJECTION 
-  glLoadIdentity
-  glViewport 0 0 (fromIntegral width) (fromIntegral height)
-  gluPerspective 40.0 (realToFrac ratio) 0.1 100.0
-  glMatrixMode gl_MODELVIEW
+  glViewport 0 0 (fromIntegral width*2) (fromIntegral height*2)
  
 -- |The 'keyboardDown' function is called whenever the user presses a key.
 -- This function passes off control to the camera so that it can move.
 keyboard :: IORef World -> KeyCallback
 keyboard _ _ Key'Escape _ KeyState'Pressed _ = terminate
 keyboard worldRef _ key _ s m = do
-  print key
-  print s
-  print m
   world <- get worldRef
   let newWorld = world { camera = cameraKey (camera world) key s m }
   worldRef $= newWorld
@@ -64,3 +56,12 @@ idle worldRef timeRef = do
   timeRef $= newTime
   world <- get worldRef
   worldRef $= woUpdate world dt
+
+mouse :: IORef World -> CursorPosCallback
+mouse worldRef win x y = do
+  print (x,y)
+  world <- get worldRef
+  let (c, newY) = cameraMouse (camera world) x y
+      newWorld = world { camera = c }
+  worldRef $= newWorld
+  setCursorPos win x newY

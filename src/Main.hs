@@ -30,7 +30,7 @@ mainLoop _window worldRef timeRef = do
     True -> do
 
       -- Render here
-      display worldRef
+      display worldRef _window
       idle worldRef timeRef
 
       swapBuffers _window
@@ -52,6 +52,7 @@ initGL = do
   shadeModel          $= Smooth
   lighting            $= Enabled
   clearColor          $= Color4 0 0 0 0
+  position (Light 0)  $= Vertex4 5 5 10 0
   lightModelAmbient   $= Color4 1 1 1 1
   light (Light 0)     $= Enabled
   diffuse (Light 0)   $= Color4 1 1 1 1
@@ -68,11 +69,15 @@ initGL = do
 initCallbacks :: Window -> IORef World -> IO ()
 initCallbacks _window worldRef = do
 
+  setCursorInputMode _window CursorInputMode'Disabled
+
   setErrorCallback $ Just errorCallback
 
   setKeyCallback _window $ Just $ keyboard worldRef
 
   setWindowSizeCallback _window $ Just reshape 
+
+  setCursorPosCallback _window $ Just (mouse worldRef)
 
   return ()
 

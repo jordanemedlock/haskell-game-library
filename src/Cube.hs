@@ -9,7 +9,7 @@ Portability : POSIX
 module Cube (cube,Width) where
 
 import GameObject
-import Graphics.UI.GLUT hiding (position)
+import Graphics.Rendering.OpenGL hiding (position)
 import Box
 
 data Direction = DFront | DBack | DLeft | DRight | DUp | DDown deriving (Show,Eq)

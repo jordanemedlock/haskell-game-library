@@ -9,7 +9,7 @@ Portability : POSIX
 module Box (box) where
 
 import GameObject
-import Graphics.UI.GLUT hiding (Height)
+import Graphics.Rendering.OpenGL hiding (Height)
 import GLTools
 
 type Width = GLfloat

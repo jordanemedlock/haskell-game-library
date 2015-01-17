@@ -8,23 +8,24 @@ Portability : POSIX
 -}
 module Display (display) where
  
-import Graphics.UI.GLUT hiding (position)
+import Graphics.UI.GLFW
+import Graphics.Rendering.OpenGL
 import Control.Monad
 import Data.IORef
 import World
  
 -- |The 'display' function displays the world.
-display :: IORef World -> DisplayCallback
-display worldRef = do 
+display :: IORef World -> Window -> IO ()
+display worldRef _window = do 
   world <- get worldRef
   clear [ColorBuffer, DepthBuffer] -- clear depth buffer, too
   loadIdentity
-  lookThrough (camera world)
+  (w,h) <- getWindowSize _window
+  lookThrough (camera world) w h
   preservingMatrix $ do
-    let w = gameObjects world
-    forM_ (w) $ \go -> preservingMatrix $ do
+    let gos = gameObjects world
+    forM_ (gos) $ \go -> preservingMatrix $ do
       let (x,y,z) = goPosition go
       translate $ Vector3 x y z
       goRender go
-  swapBuffers
  
