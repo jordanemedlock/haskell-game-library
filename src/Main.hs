@@ -9,7 +9,7 @@ Portability : POSIX
 module Main where
 
 import Graphics.UI.GLFW
-import qualified Graphics.Rendering.OpenGL as GL
+import Graphics.Rendering.OpenGL
 import Prelude hiding (init)
 import Data.IORef 
 import BuildWorld
@@ -48,13 +48,19 @@ initGL = do
   (Just _window) <- createWindow 1000 1000 "Hello World!" Nothing Nothing
   makeContextCurrent $ Just _window
 
-  GL.position (GL.Light 0) GL.$= GL.Vertex4 5 5 10 0
-  GL.light    (GL.Light 0) GL.$= GL.Enabled
-  GL.lighting   GL.$= GL.Enabled
-  GL.cullFace   GL.$= Just GL.Back
-  GL.depthFunc  GL.$= Just GL.Less
-  GL.clearColor GL.$= GL.Color4 0.05 0.05 0.05 1
-  GL.normalize  GL.$= GL.Enabled
+  depthFunc           $= Just Less -- the comparison function for depth the buffer
+  shadeModel          $= Smooth
+  lighting            $= Enabled
+  clearColor          $= Color4 0 0 0 0
+  lightModelAmbient   $= Color4 1 1 1 1
+  light (Light 0)     $= Enabled
+  diffuse (Light 0)   $= Color4 1 1 1 1
+  blend               $= Enabled
+  blendFunc           $= (SrcAlpha, OneMinusSrcAlpha)
+  colorMaterial       $= Just (FrontAndBack, AmbientAndDiffuse)
+  texture Texture2D   $= Enabled
+  normalize           $= Enabled
+  cullFace            $= Nothing
 
   return _window
 
