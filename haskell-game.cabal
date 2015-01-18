@@ -66,7 +66,8 @@ executable haskell-game
                        GLUtil,
                        JuicyPixels,
                        time,
-                       lens
+                       lens,
+                       split
   
   -- Directories containing source files.
   hs-source-dirs:      src

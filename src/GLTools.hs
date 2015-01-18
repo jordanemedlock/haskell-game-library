@@ -8,7 +8,7 @@ Portability : POSIX
 -}
 module GLTools where
 
-import Graphics.UI.GLUT
+import Graphics.Rendering.OpenGL
 
 drawNormal3f :: GLfloat -> GLfloat -> GLfloat -> IO ()
 drawNormal3f x y z = normal $ Normal3 x y z

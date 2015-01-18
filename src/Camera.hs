@@ -89,7 +89,7 @@ lookThrough c width height = do
   glMatrixMode gl_PROJECTION 
   glLoadIdentity
   glViewport 0 0 (fromIntegral width*2) (fromIntegral height*2)
-  gluPerspective 40.0 (realToFrac ratio) 0.1 100.0
+  gluPerspective 40.0 (realToFrac ratio) 0.1 1000.0
   glMatrixMode gl_MODELVIEW
 
   lookAt x      y      z
@@ -125,7 +125,7 @@ checkPitch cam | pitch cam > pi/2 = cam { camRotation = (roll cam, pi/2, yaw cam
 
 movePitch :: Pitch -> Pitch
 movePitch p | p * rotSpeed > pi/2 = pi/2 / rotSpeed
-            | p * rotSpeed < -pi/2 = pi/2 / rotSpeed
+            | p * rotSpeed < -pi/2 = -pi/2 / rotSpeed
             | otherwise = p
 
 -- |The 'cameraKeyDown' function accepts the key state and modifies the camera accordingly.
