@@ -1,80 +1,101 @@
-module Model where
+{-# LANGUAGE ScopedTypeVariables #-}
+{-|
+Module      : Model
+Description : Reads *.obj model files and renders them.
+Copyright   : (c) Jordan Medlock, 2015
+Maintainer  : jordanemedlock@gmail.com
+Stability   : experimental
+Portability : POSIX
+-}
+module Model (model) where
 
 import qualified Graphics.Rendering.OpenGL as GL hiding (Face)
+import           Graphics.Rendering.OpenGL hiding (Face)
 import Data.List.Split
 import Texture
-import Control.Monad
 import GameObject
 import System.IO.Unsafe
+import Data.Vector hiding ((++),forM_)
+import qualified Data.Vector as V
 
-data Face a = Face { vertex :: GL.Vertex3 a, texture :: GL.Vertex3 a, normal :: GL.Normal3 a }
+data Face = Face { vertex :: (Int,Int,Int), 
+                   texture :: (Int,Int,Int), 
+                   normal :: (Int,Int,Int) }
 
-data Model a = Model { vertices :: [GL.Vertex3 a], normals :: [GL.Normal3 a], faces :: [Face a], texVertices :: [GL.TexCoord2 a], textures :: Either String GL.TextureObject }
+data ModelM = ModelM { verticesM :: [Vertex3 GLdouble], 
+                       normalsM :: [Normal3 GLdouble], 
+                       facesM :: [Face], 
+                       texVerticesM :: [TexCoord2 GLdouble], 
+                       texturesM :: String }
 
-debug :: (Show a) => a -> a
-debug x = unsafePerformIO $ print x >> return x
+data Model = Model { vertices :: Vector (Vertex3 GLdouble), 
+                     normals :: Vector (Normal3 GLdouble), 
+                     faces :: Vector (Face), 
+                     texVertices :: Vector (TexCoord2 GLdouble), 
+                     textures :: TextureObject }
 
-loadModelLineSplit :: (Read a) => [String] -> Model a -> Model a
-loadModelLineSplit ("v":x:y:z:_) m  = m { vertices    = GL.Vertex3 (read x) (read y) (read z) : vertices m }
-loadModelLineSplit ("vn":x:y:z:_) m = m { normals     = GL.Normal3 (read x) (read y) (read z) : normals m }
-loadModelLineSplit ("vt":x:y:_) m   = m { texVertices = GL.TexCoord2 (read x) (read y) : texVertices m }
-loadModelLineSplit ("f":x:y:z:_) m  = m { faces       = Face vi ti ni : (faces m) }
+loadModelLineSplit :: [String] -> ModelM -> ModelM
+loadModelLineSplit ("v":x:y:z:_) m  = m { verticesM    = Vertex3 (read x) (read y) (read z) : verticesM m }
+loadModelLineSplit ("vn":x:y:z:_) m = m { normalsM     = Normal3 (read x) (read y) (read z) : normalsM m }
+loadModelLineSplit ("vt":x:y:_) m   = m { texVerticesM = TexCoord2 (read x) (1-(read y)) : texVerticesM m }
+loadModelLineSplit ("f":x:y:z:_) m  = m { facesM       = Face vi ti ni : (facesM m) }
   where (vix:tix:nix:_) = splitOn "/" x
         (viy:tiy:niy:_) = splitOn "/" y
         (viz:tiz:niz:_) = splitOn "/" z
-        vi = GL.Vertex3 (read vix) (read viy) (read viz)
-        ti = GL.Vertex3 (read tix) (read tiy) (read tiz)
-        ni = GL.Normal3 (read nix) (read niy) (read niz)
-loadModelLineSplit ("g":name:_) m = m { textures = Left name }
+        vi = apply3 read ( vix, viy, viz)
+        ti = apply3 read ( tix, tiy, tiz)
+        ni = apply3 read ( nix, niy, niz)
+loadModelLineSplit ("g":name:_) m = m { texturesM = name }
 loadModelLineSplit xs m = unsafePerformIO (print xs >> return m)
 
-modelLine :: (Read a) => String -> Model a -> Model a
+fixModel :: ModelM -> IO Model
+fixModel (ModelM v n f tv t) = do
+  t' <- loadGLTextureFromFile $ ("res/models/"++t++".png")
+  return $ Model (fromList v) (fromList n) (fromList f) (fromList tv) t'
+
+modelLine :: String -> ModelM -> ModelM
 modelLine s m = loadModelLineSplit (splitOn " " s) m
 
-modelLines :: (Read a) => [String] -> Model a -> Model a
+modelLines :: [String] -> ModelM -> ModelM 
 modelLines (x:xs) m = modelLines xs (modelLine x m)
 modelLines [] m = m
 
-readModel :: (Read a) => String -> IO (Model a)
+readModel :: String -> IO Model
 readModel str = do
   fString <- readFile $ "res/models/"++str++".obj"
-  let model' = modelLines (lines fString) $ Model [] [] [] [] (Left "")
-  t <- loadGLTextureFromFile $ ("res/models/"++(either id (const "fail") (textures model'))++".png")
-  return model' { textures = Right t }
+  let model' = modelLines (lines fString) $ ModelM [] [] [] [] ""
+  fixModel model'
 
-maybeRight :: Either a b -> Maybe b
-maybeRight (Left _) = Nothing
-maybeRight (Right x) = Just x
+apply3 :: forall t t1. (t -> t1) -> (t, t, t) -> (t1, t1, t1)
+apply3 f (x,y,z) = (f x, f y, f z)
 
-renderModel :: (RealFrac a, GL.NormalComponent a, GL.VertexComponent a, GL.TexCoordComponent a, Show a) => Model a -> IO ()
+indexes :: forall t1. Vector t1 -> Int -> (Int, Int, Int) -> (t1, t1, t1)
+indexes xs l x = apply3 ((!) xs . (-) l ) x
+
+renderModel :: Model -> IO ()
 renderModel model' = do 
-  GL.textureBinding GL.Texture2D GL.$= maybeRight (textures model')
+  textureBinding Texture2D $= (Just $ textures model')
   let ns = normals model'
       vs = vertices model'
       ts = texVertices model'
-      _  = debug $ length ns
-      _  = debug $ length vs
-      _  = debug $ length ts
-  forM_ (faces model') $ \face -> do
-    GL.color (GL.Color3 1 1 (1 :: GL.GLfloat))
-    GL.renderPrimitive GL.Triangles $ do
-      let GL.Normal3 nx ny nz = debug $ normal face
-          (n1,n2,n3) = (ns !! (floor nx), ns !! (floor ny), ns !! (floor nz))
-          GL.Vertex3 vx vy vz = debug $ vertex face
-          (v1,v2,v3) = (vs !! (floor vx), vs !! (floor vy), vs !! (floor vz))
-          GL.Vertex3 tx ty tz = debug $ texture face
-          (t1,t2,t3) = (ts !! (floor tx), ts !! (floor ty), ts !! (floor tz))
-      GL.normal n1
-      GL.texCoord t1
-      GL.vertex v1
-      GL.normal n2
-      GL.texCoord t2
-      GL.vertex v2
-      GL.normal n3
-      GL.texCoord t3
-      GL.vertex v3
+  V.forM_ (faces model') $ \face -> do
+    color (Color3 1 1 (1 :: GLfloat))
+    renderPrimitive Triangles $ do
+      let (ln,lv,lt) = (V.length ns,V.length vs,V.length ts)
+          n = Model.normal face
+          v = Model.vertex face
+          t = Model.texture face
+          (n1,n2,n3) = indexes ns ln n
+          (v1,v2,v3) = indexes vs lv v
+          (t1,t2,t3) = indexes ts lt t
+
+      GL.color $ Color3 1 1 (1 :: GLdouble) 
+      (GL.normal n1) >> (GL.texCoord t1) >> (GL.vertex v1)
+      (GL.normal n2) >> (GL.texCoord t2) >> (GL.vertex v2)
+      (GL.normal n3) >> (GL.texCoord t3) >> (GL.vertex v3)
   
+-- |The 'model' function accepts the short name of the model file in the res/models/ folder and they x y z position
 model :: String -> X -> Y -> Z -> IO GameObject
 model str x y z= do 
   m <- readModel str
-  return $ SimpleObject (x,y,z) (0,0,0) $ renderModel (m :: Model GL.GLdouble) 
+  return $ SimpleObject (x,y,z) (0,0,0) $ renderModel m  

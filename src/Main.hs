@@ -6,7 +6,7 @@ Maintainer  : jordanemedlock@gmail.com
 Stability   : experimental
 Portability : POSIX
 -}
-module Main where
+module Main (main)where
 
 import Graphics.UI.GLFW
 import Graphics.Rendering.OpenGL
@@ -21,7 +21,7 @@ import Data.Time.Clock.POSIX
 errorCallback :: ErrorCallback
 errorCallback e s = putStrLn $ (show e) ++ " " ++ s
 
-
+-- |The 'mainLoop' is called every frame and controls everything.
 mainLoop :: Window -> IORef World -> IORef POSIXTime -> IO ()
 mainLoop _window worldRef timeRef = do
   x <- windowShouldClose _window
@@ -65,7 +65,7 @@ initGL = do
 
   return _window
 
--- |The 'initCallbacks' function adds all the GLUT callbacks.
+-- |The 'initCallbacks' function adds all the GLFW callbacks.
 initCallbacks :: Window -> IORef World -> IO ()
 initCallbacks _window worldRef = do
 

@@ -128,7 +128,7 @@ movePitch p | p * rotSpeed > pi/2 = pi/2 / rotSpeed
             | p * rotSpeed < -pi/2 = -pi/2 / rotSpeed
             | otherwise = p
 
--- |The 'cameraKeyDown' function accepts the key state and modifies the camera accordingly.
+-- |The 'cameraKey' function accepts the key state and modifies the camera accordingly.
 cameraKey :: Camera -> Key -> KeyState -> ModifierKeys -> Camera
 cameraKey cam Key'W         KeyState'Pressed _ = cam { camMoving = (\(x,y,_)->(x,y,-1)) (camMoving cam)} 
 cameraKey cam Key'A         KeyState'Pressed _ = cam { camMoving = (\(_,y,z)->( 1,y,z)) (camMoving cam)} 
@@ -145,22 +145,7 @@ cameraKey cam Key'Space     KeyState'Released _ = cam { camMoving = (\(x,_,z)->(
 cameraKey cam Key'LeftShift KeyState'Released _ = cam { camMoving = (\(x,_,z)->(x,0,z)) (camMoving cam)} 
 cameraKey cam _             _                 _ = cam
 
+-- |The 'cameraMouse' function accepts mouse X and Y location and turns the camera.
 cameraMouse :: Camera -> Yaw -> Pitch -> (Camera, Pitch)
 cameraMouse cam y p = (cam { camRotation = (\(r,_,_) -> (r,p'*rotSpeed,y*rotSpeed)) (camTurning cam) }, p')
   where p' = movePitch p
-
-
--- -- |The 'cameraKeyDown' function accepts the key state and modifies the camera accordingly.
--- cameraKeyDown :: Camera -> Key -> Modifiers -> Camera
--- x: 0   z: 1    (x + scaleX cam,y,z - scaleZ cam)) (camPosition cam)} 
--- x: 1   z: 0    (x - scaleZ cam,y,z - scaleX cam)) (camPosition cam)} 
--- x: 0   z: -1   (x - scaleX cam,y,z + scaleZ cam)) (camPosition cam)} 
--- x: -1  z: 0    (x + scaleZ cam,y,z + scaleX cam)) (camPosition cam)} 
--- cameraKeyDown cam (SpecialKey KeyShiftL) _ = cam { camPosition = (\(x,y,z) -> (x,y-speed,z)) (camPosition cam)} 
--- cameraKeyDown cam (Char ' ') _ = cam { camPosition = (\(x,y,z) -> (x,y+speed,z)) (camPosition cam)} 
-
--- cameraKeyDown cam (SpecialKey KeyUp) _    = checkPitch $ cam {pitch = (pitch cam) - rotSpeed }
--- cameraKeyDown cam (SpecialKey KeyDown) _  = checkPitch $ cam {pitch = (pitch cam) + rotSpeed }
--- cameraKeyDown cam (SpecialKey KeyLeft) _  = cam {yaw = (yaw cam) - rotSpeed }
--- cameraKeyDown cam (SpecialKey KeyRight) _ = cam {yaw = (yaw cam) + rotSpeed }
--- cameraKeyDown c _ _ = c

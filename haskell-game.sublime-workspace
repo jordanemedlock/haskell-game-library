@@ -4,6 +4,110 @@
 		"selected_items":
 		[
 			[
+				"GL",
+				"GLdouble"
+			],
+			[
+				"read",
+				"readModel"
+			],
+			[
+				"Tex",
+				"TexCoord3"
+			],
+			[
+				"Ver",
+				"Vertex2"
+			],
+			[
+				"no",
+				"normal"
+			],
+			[
+				"v",
+				"vertices"
+			],
+			[
+				"ver",
+				"vertices"
+			],
+			[
+				"vi",
+				"verticies"
+			],
+			[
+				"te",
+				"textures"
+			],
+			[
+				"tex",
+				"textures"
+			],
+			[
+				"rea",
+				"readModel"
+			],
+			[
+				"mo",
+				"modelLines"
+			],
+			[
+				"mod",
+				"modelLine"
+			],
+			[
+				"modelL",
+				"modelLine"
+			],
+			[
+				"normal",
+				"normals"
+			],
+			[
+				"new",
+				"newWorld"
+			],
+			[
+				"move",
+				"movePitch"
+			],
+			[
+				"wo",
+				"worldRef"
+			],
+			[
+				"wol",
+				"worldRef"
+			],
+			[
+				"cam",
+				"camera"
+			],
+			[
+				"came",
+				"camera"
+			],
+			[
+				"time",
+				"timeRef"
+			],
+			[
+				"worl",
+				"worldRef"
+			],
+			[
+				"pr",
+				"projectionMode"
+			],
+			[
+				"P",
+				"Pressed"
+			],
+			[
+				"Key",
+				"KeyState"
+			],
+			[
 				"wor",
 				"worldRef"
 			],
@@ -24,24 +128,12 @@
 				"keyboardDown"
 			],
 			[
-				"new",
-				"newtype"
-			],
-			[
-				"worl",
-				"world"
-			],
-			[
 				"world",
 				"worldRef"
 			],
 			[
 				"up",
 				"updatePos"
-			],
-			[
-				"cam",
-				"camPosition"
 			],
 			[
 				"sc",
@@ -56,24 +148,12 @@
 				"rotSpeed"
 			],
 			[
-				"te",
-				"tex2"
-			],
-			[
-				"tex",
-				"tex1"
-			],
-			[
 				"draw",
 				"drawBox"
 			],
 			[
 				"drwa",
 				"drawVertex3f"
-			],
-			[
-				"Tex",
-				"texCoord"
 			],
 			[
 				"cu",
@@ -98,14 +178,6 @@
 			[
 				"Y",
 				"Yaw"
-			],
-			[
-				"GL",
-				"GLfloat"
-			],
-			[
-				"wo",
-				"worldRef"
 			],
 			[
 				"ca",
@@ -152,10 +224,6 @@
 				"initCallbacks"
 			],
 			[
-				"ver",
-				"vertexWithNormal"
-			],
-			[
 				"x",
 				"xyz"
 			],
@@ -192,10 +260,6 @@
 				"multiplicationTableProblem"
 			],
 			[
-				"pr",
-				"print"
-			],
-			[
 				"cor",
 				"correctAnswer"
 			],
@@ -226,10 +290,6 @@
 			[
 				"start",
 				"startTime"
-			],
-			[
-				"time",
-				"timesTableProblem"
 			],
 			[
 				"hir",
@@ -405,6 +465,17 @@
 	},
 	"file_history":
 	[
+		"/Users/jem/School/15/haskell_game/src/Texture.hs",
+		"/Users/jem/School/15/haskell_game/src/BuildWorld.hs",
+		"/Users/jem/School/15/haskell_game/src/World.hs",
+		"/Users/jem/School/15/haskell_game/src/Display.hs",
+		"/Users/jem/School/15/haskell_game/src/Camera.hs",
+		"/Users/jem/School/15/haskell_game/src/Main.hs",
+		"/Users/jem/School/15/haskell_game/src/Direction.hs",
+		"/Users/jem/School/15/haskell_game/src/Cube.hs",
+		"/Users/jem/School/15/haskell_game/src/Box.hs",
+		"/Users/jem/School/15/haskell_game/src/Bindings.hs",
+		"/Users/jem/School/15/Main.hs",
 		"/Users/jem/School/15/haskell_game/TODO.txt",
 		"/Users/jem/School/15/haskell_game/README.md",
 		"/Users/jem/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
@@ -416,11 +487,9 @@
 		"/Users/jem/School/15/haskell_game/haskell.docset/Contents/Resources/Documents/Cabal-1.18.1.4/Cabal.txt",
 		"/Users/jem/School/15/haskell_game/dist/build/autogen/cabal_macros.h",
 		"/Users/jem/School/15/haskell_game/haskell.docset/Contents/Resources/Documents/transformers-0.3.0.0/Control-Applicative-Backwards.html",
-		"/Users/jem/School/15/haskell_game/src/Camera.hs",
 		"/Users/jem/School/15/independent_study/notes.txt",
 		"/Users/jem/School/15/haskell_game/haskell.docset/Contents/Resources/Documents/doc-index-S.html",
 		"/Users/jem/School/15/haskell_game/doc-index.html",
-		"/Users/jem/School/15/haskell_game/src/Direction.hs",
 		"/Users/jem/School/15/haskell_game/ocean.css",
 		"/Users/jem/School/15/haskell_game/.gitignore",
 		"/Users/jem/School/15/haskell_game/mini_Camera.html",
@@ -432,18 +501,14 @@
 		"/Users/jem/School/15/haskell_game/haskell.docset/Contents/Resources/Documents/ghc-prim-0.3.1.0/GHC-Magic.html",
 		"/Users/jem/School/15/haskell_game/src/Texture.hi",
 		"/Users/jem/School/15/haskell_game/haskell.docset/Contents/Resources/Documents/base-4.7.0.1/Data-Type-Equality.html",
-		"/Users/jem/School/15/haskell_game/src/Texture.hs",
 		"/Users/jem/School/15/haskell_game/src/Points.hs",
 		"/Users/jem/School/15/haskell_game/src/GLUtil-master/GLUtil.cabal",
 		"/Users/jem/School/15/haskell_game/src/Graphics/GLUtil/Linear.hs",
 		"/Users/jem/School/15/haskell_game/src/lesson3b.lhs",
-		"/Users/jem/School/15/haskell_game/src/Bindings.hs",
 		"/Users/jem/School/15/haskell_game/src/Setup.hs",
 		"/Users/jem/School/15/haskell_game/src/GameObject.hs",
-		"/Users/jem/School/15/haskell_game/src/World.hs",
 		"/Users/jem/School/15/haskell_game/LICENSE",
 		"/Users/jem/School/15/haskell_game/dist/setup-config",
-		"/Users/jem/School/15/haskell_game/src/Main.hs",
 		"/Users/jem/School/15/haskell_game/src/haddock.file-template",
 		"/Users/jem/School/15/haskell_game/src/GameObject",
 		"/Users/jem/School/15/haskell_game/Bindings.hs",
@@ -493,6 +558,28 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"floor",
+			"model",
+			">> ",
+			"1",
+			"draw",
+			"ni",
+			"vi",
+			"y",
+			"vertices",
+			"y",
+			"x",
+			"dy",
+			"dx",
+			"perspective",
+			"Down",
+			" ",
+			"'",
+			"' ",
+			" ",
+			"Up",
+			"Down",
+			"GLdouble",
 			"DEBUG",
 			"8",
 			"4",
@@ -701,7 +788,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 221.0,
+	"side_bar_width": 457.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

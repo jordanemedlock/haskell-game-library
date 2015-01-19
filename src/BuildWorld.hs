@@ -9,19 +9,17 @@ Portability : POSIX
 module BuildWorld (buildWorld) where
 
 import World
--- import Checkerboard
 import Camera
--- import Texture
 import Model
-
+import Box
+import Texture
 -- |The 'buildWorld' function creates all of the GameObjects in the world.
 -- At the moment all this does is create a /possibly/ 10x10 checkerboard floor.
 buildWorld :: IO World
 buildWorld = do
-  -- tex1 <- loadGLTextureFromFile "res/textures/brick1.png"
-  -- tex2 <- loadGLTextureFromFile "res/textures/brick2.png"
-  m <- model "guyblue" 0 0 0 
+  m <- model "guyblue" 0 5 0
+  tex <- loadGLTextureFromFile "res/textures/brick1.png"
   return $ World {
-    gameObjects = [m],
+    gameObjects = [m,box tex 10 1 10],
     camera      = newCamera 0 5 0
   }

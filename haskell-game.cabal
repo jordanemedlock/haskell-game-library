@@ -54,7 +54,7 @@ executable haskell-game
   -- other-modules:       
   
   -- LANGUAGE extensions used by modules in this package.
-  -- other-extensions:    
+  other-extensions:    ScopedTypeVariables
   
   -- Other library packages from which modules are imported.
   build-depends:       base >=4.7 && <4.8, 
@@ -67,8 +67,9 @@ executable haskell-game
                        JuicyPixels,
                        time,
                        lens,
-                       split
-  
+                       split,
+                       vector
+
   -- Directories containing source files.
   hs-source-dirs:      src
   
