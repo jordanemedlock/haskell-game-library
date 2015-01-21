@@ -48,7 +48,7 @@ initGL = do
   (Just _window) <- createWindow 1000 1000 "Hello World!" Nothing Nothing
   makeContextCurrent $ Just _window
 
-  depthFunc           $= Just Less -- the comparison function for depth the buffer
+  depthFunc           $= Just Less
   shadeModel          $= Smooth
   lighting            $= Enabled
   clearColor          $= Color4 0 0 0 0
@@ -61,7 +61,7 @@ initGL = do
   colorMaterial       $= Just (FrontAndBack, AmbientAndDiffuse)
   texture Texture2D   $= Enabled
   normalize           $= Enabled
-  cullFace            $= Nothing
+  cullFace            $= Just Back
 
   return _window
 
@@ -69,7 +69,7 @@ initGL = do
 initCallbacks :: Window -> IORef World -> IO ()
 initCallbacks _window worldRef = do
 
-  setCursorInputMode _window CursorInputMode'Disabled
+  setCursorInputMode _window CursorInputMode'Hidden
 
   setErrorCallback $ Just errorCallback
 

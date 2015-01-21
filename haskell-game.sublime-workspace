@@ -4,6 +4,46 @@
 		"selected_items":
 		[
 			[
+				"mo",
+				"model"
+			],
+			[
+				"TE",
+				"TexCoord2"
+			],
+			[
+				"M",
+				"ModelM"
+			],
+			[
+				"Mo",
+				"ModelM"
+			],
+			[
+				"Te",
+				"Texture2D"
+			],
+			[
+				"face",
+				"facesM"
+			],
+			[
+				"N",
+				"Normal3"
+			],
+			[
+				"Ve",
+				"Vector"
+			],
+			[
+				"no",
+				"normal"
+			],
+			[
+				"V",
+				"Vector"
+			],
+			[
 				"GL",
 				"GLdouble"
 			],
@@ -18,10 +58,6 @@
 			[
 				"Ver",
 				"Vertex2"
-			],
-			[
-				"no",
-				"normal"
 			],
 			[
 				"v",
@@ -46,10 +82,6 @@
 			[
 				"rea",
 				"readModel"
-			],
-			[
-				"mo",
-				"modelLines"
 			],
 			[
 				"mod",
@@ -465,6 +497,8 @@
 	},
 	"file_history":
 	[
+		"/Users/jem/School/15/haskell_game/dist/build/haskell-game/haskell-game.app/Contents/MacOS/run-game",
+		"/Users/jem/School/15/haskell_game/dist/build/haskell-game/haskell-game.app/Contents/Info.plist",
 		"/Users/jem/School/15/haskell_game/src/Texture.hs",
 		"/Users/jem/School/15/haskell_game/src/BuildWorld.hs",
 		"/Users/jem/School/15/haskell_game/src/World.hs",
@@ -558,6 +592,16 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"prof",
+			"read",
+			"((!) ",
+			"apply3",
+			"n",
+			"ts ! ",
+			" vs ! ",
+			"!!",
+			"GL.",
+			"GLdouble",
 			"floor",
 			"model",
 			">> ",
@@ -788,7 +832,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 457.0,
+	"side_bar_width": 228.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

@@ -20,6 +20,6 @@ buildWorld = do
   m <- model "guyblue" 0 5 0
   tex <- loadGLTextureFromFile "res/textures/brick1.png"
   return $ World {
-    gameObjects = [m,box tex 10 1 10],
+    gameObjects = [m,m,m,m],
     camera      = newCamera 0 5 0
   }
